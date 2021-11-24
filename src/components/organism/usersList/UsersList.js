@@ -37,7 +37,7 @@ const UsersList = () => {
   return (
     <>
       <Wrapper>
-        <FormField />
+        <FormField label="Name" id="name" name="name" />
       </Wrapper>
       <Wrapper>
         <h1>{isLoading ? 'Loading...' : `User's list`}</h1>
