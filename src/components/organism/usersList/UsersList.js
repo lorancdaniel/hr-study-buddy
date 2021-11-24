@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { users as usersData } from 'data/users';
 import UsersListItem from 'components/molecules/UsersListItem/UsersListItem';
 import { Wrapper, StyledList } from './UsersList.styles';
+import { users as usersData } from 'data/users';
+import { FormField } from 'components/molecules/FormField/FormField';
 
 const mockAPI = (success) => {
   return new Promise((resolve, reject) => {
@@ -33,17 +34,20 @@ const UsersList = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {}, []);
-
   return (
-    <Wrapper>
-      <h1>{isLoading ? 'Loading...' : `User's list`}</h1>
-      <StyledList>
-        {users.map((userData, i) => (
-          <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
-        ))}
-      </StyledList>
-    </Wrapper>
+    <>
+      <Wrapper>
+        <FormField />
+      </Wrapper>
+      <Wrapper>
+        <h1>{isLoading ? 'Loading...' : `User's list`}</h1>
+        <StyledList>
+          {users.map((userData, i) => (
+            <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
+          ))}
+        </StyledList>
+      </Wrapper>
+    </>
   );
 };
 
