@@ -23,7 +23,7 @@ const mockAPI = (success) => {
   });
 };
 
-const UsersList = () => {
+const Form = ({ handleAddUser, formValues, handleNameChange }) => {
   return (
     <>
       <Wrapper as="form" onSubmit={handleAddUser}>
@@ -33,16 +33,8 @@ const UsersList = () => {
         <FormField label="Average" id="average" name="average" value={formValues.average} onChange={handleNameChange} />
         <Button type="submit">Add user</Button>
       </Wrapper>
-      <Wrapper>
-        <h1>{isLoading ? 'Loading...' : `User's list`}</h1>
-        <StyledList>
-          {users.map((userData, i) => (
-            <UsersListItem deleteUser={deleteUser} index={i} userData={userData} />
-          ))}
-        </StyledList>
-      </Wrapper>
     </>
   );
 };
 
-export default UsersList;
+export default Form;

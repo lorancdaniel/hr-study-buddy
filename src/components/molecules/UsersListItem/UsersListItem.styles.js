@@ -2,59 +2,53 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.li`
   display: flex;
-  flex-direction: basel;
+  align-items: center;
   position: relative;
-  padding: 24px;
+
   &:not(:last-child)::after {
     content: '';
     position: absolute;
     bottom: 0;
-    width: 95%;
-    height: 0px;
+    width: 100%;
+    height: 1px;
     background-color: lightgrey;
-    border: 0.5px solid #dfe2e8;
   }
 `;
 
-export const Average = styled.div`
-  width: 34px;
-  height: 34px;
-  background-color: ${(props) => AverageSwitch(props)};
+export const StyledAverage = styled.div`
+  width: 35px;
+  height: 35px;
   border-radius: 50px;
-  border: none;
-  color: ${({ theme }) => theme.colors.white};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: ${({ theme }) => theme.fontSize.m};
+  font-size: ${({ theme }) => theme.fontSize.s};
+  color: ${({ theme }) => theme.colors.white};
   font-weight: bold;
+  background: ${({ theme, value }) => {
+    if (value > 4) return theme.colors.success;
+    if (value > 3) return theme.colors.warning;
+    if (value > 2) return theme.colors.error;
+    return theme.colors.grey;
+  }};
 `;
 
-export const ParagraphWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1.5rem;
-  position: relative;
-  height: 34px;
-  line-height: 0;
-  margin-top: -6px;
-`;
+export const StyledInfo = styled.div`
+  padding: 25px 20px;
 
-export const Paragraph = styled.p`
-  color: ${(props) => (props.isBold ? props.theme.colors.boldGrey : props.theme.colors.grey)};
-  font-weight: ${(props) => (props.isBold ? props.theme.fontWeight.bold : props.theme.fontWeight.light)};
-  font-size: ${(props) => (props.isBold ? props.theme.fontSize.l : props.theme.fontSize.s)};
-  position: ${(props) => (props.isBold ? 'relative' : 'absolute')};
-  bottom: ${(props) => (props.isBold ? '' : '-14px')};
-`;
-
-const AverageSwitch = (props) => {
-  switch (true) {
-    case props.children >= 4:
-      return props.theme.colors.success;
-    case props.children <= 2.5:
-      return props.theme.colors.error;
-    default:
-      return props.theme.colors.warning;
+  p {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.darkGrey};
   }
-};
+
+  p:first-child {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: ${({ theme }) => theme.fontSize.l};
+  }
+
+  p:last-child {
+    font-size: ${({ theme }) => theme.fontSize.m};
+  }
+`;
